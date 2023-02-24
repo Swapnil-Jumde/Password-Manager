@@ -46,22 +46,14 @@ def save():
         add = messagebox.askokcancel(title=website ,message=f"Entered details are\n \nEmail: {email} \nPassword: {password} "
                                                       f"\n\nYou want to add these details???" )
         if add:
-            # with open("data.txt", "a") as deta_file:     #this lines are used for adding data in a txt file
-            #     deta_file.write(f"{website} | {email} | {password}\n")
 
             try :
                 with open("data.json", "r") as data_file:     #this lines are used for adding data in json formatted file
-                    #json.dump(new_data, data_file, indent=4) #Write the json file
-
-                    # data= json.load(data_file) #this code is for loadinng the json files data
-                    # print(data)
 
                     data = json.load(data_file) #loading the data or reading
                     data.update(new_data) #updating old data
 
             except FileNotFoundError: #if file is not present after starting the app then by this exception handling file got created automatically
-                # data = json.load(data_file)  # loading the data or reading
-                #data.update(new_data)  # updating old data
 
                 with open("data.json", "w") as data_file:
                     json.dump(new_data, data_file, indent=4)
@@ -149,10 +141,6 @@ generate_pass_button.grid(column=2, row=3)
 #Add Button
 add_button = Button(text= "Add", width=30, fg=GREY, command=save)
 add_button.grid(column=1, row=4, columnspan=2)
-
-# #copy to clipboard Button
-# copy_to_clipboard_button = Button(text= "Copy Password", width=30, fg=DARK_GREY, command=save)
-# copy_to_clipboard_button.grid(column=1, row=5, columnspan=2)
 
 #Search Button
 search_button = Button(text="Search", width=15, fg=DARK_GREY, command = search)
